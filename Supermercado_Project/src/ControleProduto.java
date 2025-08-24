@@ -68,6 +68,7 @@ public class ControleProduto
     public void listarProdutos()
     {
         System.out.println("-----------------------------Produtos-------------------------------");
+        System.out.println();
 
         for(Produto produto : produtos)
         {

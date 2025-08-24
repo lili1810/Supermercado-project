@@ -21,6 +21,7 @@ public class Historico {
     public void exibeHistorico()
     {
         System.out.println("-----------------------------Histórico de Vendas-------------------------------");
+        System.out.println();
 
         for(Produto p : historicoVendas)
         {
