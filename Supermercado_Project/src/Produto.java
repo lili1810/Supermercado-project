@@ -11,7 +11,7 @@ public class Produto
        this.preco = preco;
    }
 
-   public String GetNome()
+   public String getNome()
    {
        return this.nome;
    }
@@ -22,6 +22,11 @@ public class Produto
 
     public int getQuantidade() {
         return this.quantidade;
+    }
+
+    public void setQuantidade (int quantidade)
+    {
+        this.quantidade = quantidade;
     }
 
     public void adicionarEstoque(int quantidade)
@@ -39,6 +44,12 @@ public class Produto
     {
         System.out.println("Nome do produto : " + this.nome);
         System.out.println("quantidade disponivel: " + this.quantidade);
+        System.out.println("Preço: " + this.preco);
+    }
+    public void exibirInfoVendida()
+    {
+        System.out.println("Nome do produto : " + this.nome);
+        System.out.println("quantidade vendida: " + this.quantidade);
         System.out.println("Preço: " + this.preco);
     }
 }

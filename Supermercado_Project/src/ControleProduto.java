@@ -4,12 +4,11 @@ import java.util.Objects;
 public class ControleProduto
 {
     private ArrayList <Produto> produtos = new ArrayList <Produto>();
-    private ArrayList<Produto> historico = new ArrayList<Produto>();
-    private int totalProdutos = 0;//contador dos objetos
+    Historico historicoVendas = new Historico();
 
     public void cadastraProduto(String nome, int quantidade, double preco)
     {
-        if (totalProdutos == 10)//ve se tem espaco
+        if (produtos.size() == 10)//ve se tem espaco
         {
             System.out.println("Espaço cheio!");
             return;
@@ -17,10 +16,9 @@ public class ControleProduto
     //toda vez que cadastraproduto for chamada, e se tiver espaco na lista, um novo objeto sera instanciado
         Produto novoProduto = new Produto(nome, quantidade, preco);//instancia um novo produto(objeto)
 
-        if(totalProdutos <= 10)
+        if(produtos.size() <= 10)
         {
             produtos.add(novoProduto);
-            totalProdutos++;
             System.out.println("Produto cadastrado!");
         }
     }
@@ -29,7 +27,7 @@ public class ControleProduto
     {
         for (Produto produto : produtos)
         {
-            if (Objects.equals(produto.GetNome(), nome))//ve se o objeto esta na lista
+            if (Objects.equals(produto.getNome(), nome))//ve se o objeto esta na lista
             {
                 produto.adicionarEstoque(quantidade);//chama o metodo de produto
                 System.out.println("Estoque atualizado!");
@@ -45,14 +43,13 @@ public class ControleProduto
     {
         for (Produto produto : produtos)
         {
-            if (Objects.equals(produto.GetNome(), nome))//se o objeto estiver no array...
+            if (Objects.equals(produto.getNome(), nome))//se o objeto estiver no array...
             {
-                if(produto.getQuantidade() >= quantidade)
-                {
+                if(produto.getQuantidade() >= quantidade) {
                     produto.reduzirEstoque(quantidade);
 
-                    Produto produtoVendido = new Produto(produto.GetNome(), quantidade, produto.getPreco());//instancia um novo produto
-                    historico.add(produtoVendido);
+                    Produto produtoVendido = new Produto(produto.getNome(), quantidade, produto.getPreco());//instancia um novo produto
+                    historicoVendas.adicionarProdutoVendido(produtoVendido);
                     System.out.println("Venda efetuada!");
                     return;
                 }
@@ -71,20 +68,18 @@ public class ControleProduto
     public void listarProdutos()
     {
         System.out.println("-----------------------------Produtos-------------------------------");
+        System.out.println();
 
         for(Produto produto : produtos)
         {
             produto.exibirInfo();
             System.out.println();
         }
-    }
-    public void exibeHistorico()
-    {
-        System.out.println("-----------------------------Historico-------------------------------");
 
-        for(Produto produto : historico)
-        {
-            produto.exibirInfo();
-        }
+        System.out.println("--------------------------------------------------------------------");
+    }
+
+    public void exibirHistoricoVenda() {
+        historicoVendas.exibeHistorico();
     }
 }

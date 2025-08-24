@@ -83,7 +83,7 @@ public class Supermercado
 
             }else if(c == 5)
             {
-                controleProduto.exibeHistorico();
+                controleProduto.exibirHistoricoVenda();
                 System.out.println();
             }
             else if(c == 6)
