@@ -32,6 +32,8 @@ public class ControleProduto
             if (Objects.equals(produto.GetNome(), nome))//ve se o objeto esta na lista
             {
                 produto.adicionarEstoque(quantidade);//chama o metodo de produto
+
+                //historico(produto.GetNome(), quantidae, +)
                 System.out.println("Estoque atualizado!");
             }
             else
@@ -50,6 +52,8 @@ public class ControleProduto
                 if(produto.getQuantidade() >= quantidade)
                 {
                     produto.reduzirEstoque(quantidade);
+
+                    //historico(nome, quantidade, -)
 
                     Produto produtoVendido = new Produto(produto.GetNome(), quantidade, produto.getPreco());//instancia um novo produto
                     historico.add(produtoVendido);
