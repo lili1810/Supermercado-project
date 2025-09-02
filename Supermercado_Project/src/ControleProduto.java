@@ -89,6 +89,7 @@ public class ControleProduto
             {
                 System.out.println();
                 System.out.println("------------------------Variação de Estoque-------------------------");
+                System.out.print(produto.getNome()+": ");
                 produto.exibirVaricaoEstoque();
                 System.out.println("--------------------------------------------------------------------");
                 System.out.println();
