@@ -58,11 +58,8 @@ public class ControleProduto
                     System.out.println("Quantidade não disponivel: ");
                 }
             }
-            else
-            {
-                System.out.println("Produto não encontrado : " + nome);
-            }
         }
+        System.out.println("Produto não encontrado : " + nome);
     }
 
     public void listarProdutos()
