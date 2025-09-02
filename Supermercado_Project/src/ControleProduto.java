@@ -33,12 +33,10 @@ public class ControleProduto
 
                 //historico(produto.GetNome(), quantidae, +)
                 System.out.println("Estoque atualizado!");
-            }
-            else
-            {
-                System.out.println("Produto não encontrado : " + nome);
+                return;
             }
         }
+        System.out.println("Produto não encontrado : " + nome);
     }
 
     public void efetuaVenda(String nome, int quantidade)
