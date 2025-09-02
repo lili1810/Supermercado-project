@@ -30,6 +30,8 @@ public class ControleProduto
             if (Objects.equals(produto.getNome(), nome))//ve se o objeto esta na lista
             {
                 produto.adicionarEstoque(quantidade);//chama o metodo de produto
+
+                //historico(produto.GetNome(), quantidae, +)
                 System.out.println("Estoque atualizado!");
             }
             else
@@ -56,6 +58,7 @@ public class ControleProduto
                 else
                 {
                     System.out.println("Quantidade não disponivel: ");
+                    return;
                 }
             }
         }
