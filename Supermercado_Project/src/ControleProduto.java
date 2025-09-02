@@ -77,9 +77,28 @@ public class ControleProduto
         }
 
         System.out.println("--------------------------------------------------------------------");
+        System.out.println();
     }
 
     public void exibirHistoricoVenda() {
         historicoVendas.exibeHistorico();
     }
+
+    public void exibirVariacaoEstoque(String nome)
+    {
+        for (Produto produto : produtos)
+        {
+            if (Objects.equals(produto.getNome(), nome))
+            {
+                System.out.println();
+                System.out.println("------------------------Variação de Estoque-------------------------");
+                produto.exibirVaricaoEstoque();
+                System.out.println("--------------------------------------------------------------------");
+                System.out.println();
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado: " + nome);
+    }
+
 }

@@ -34,7 +34,8 @@ public class Supermercado
                     "3. Atualizar o estoque\n" +
                     "4. Ver produtos disponíveis\n" +
                     "5. Ver historico de vendas\n" +
-                    "6. Sair do supermercado");
+                    "6. Ver Variação de estoque de produto\n" +
+                    "7. Sair do supermercado");
             c = sc.nextInt();
 
             if(c == 1)
@@ -85,8 +86,12 @@ public class Supermercado
             {
                 controleProduto.exibirHistoricoVenda();
                 System.out.println();
-            }
-            else if(c == 6)
+            } else if (c == 6){
+                sc.nextLine();
+                System.out.print("Digite o nome do produto: ");
+                nome = sc.nextLine();
+                controleProduto.exibirVariacaoEstoque(nome);
+            } else if(c == 7)
             {
                 break;
             }
