@@ -1,4 +1,4 @@
-public class Produto
+public class Produto extends Informacoes
 {
     private String nome;
     private int quantidade;

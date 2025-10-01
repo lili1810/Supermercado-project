@@ -4,7 +4,6 @@ import java.util.Objects;
 public class ControleCliente
 {
     public static ArrayList<Cliente> clientecadastrado = new ArrayList<Cliente>();
-    private Cliente cliente;
     private Produto produto;
 
     public void cadastrarCliente(String nome, double credito)

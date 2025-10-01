@@ -1,16 +1,13 @@
-public class Cliente
+public class Cliente extends Pessoa
 {
     private String nome;
     private double credito;
 
     public Cliente(String nome, double credito)
     {
-        this.nome = nome;
+        super(nome);
         this.credito = credito;
-    }
-    public String getNome()
-    {
-        return this.nome;
+
     }
 
     public double getCredito()

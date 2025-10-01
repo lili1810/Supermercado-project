@@ -1,14 +1,10 @@
-public class Funcionario
+public class Funcionario extends Pessoa
 {
-    private String nome ;
+    private String nome;
 
     public Funcionario(String nome)
     {
-        this.nome = nome;
+        super(nome);
     }
 
-    public String getNome()
-    {
-        return this.nome;
-    }
 }

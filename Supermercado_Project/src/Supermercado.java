@@ -70,8 +70,6 @@ public class Supermercado
 
                         if (controleCliente.confereCadastro(ncliente)) {
                             System.out.println("cadastro encontrado!");
-                            //carrinho
-                            //adicionar/excluir/ver
                             System.out.println();
                             System.out.println("O que deseja fazer ?\n" +
                                 "1. Comprar um produto\n" +
@@ -120,27 +118,28 @@ public class Supermercado
                                 }
                                 else
                                 {
-                                    System.out.println("opcao invalida");
+                                    System.out.println("Opção inválida");
                                 }
                             }
                             else if (Objects.equals(ac, "2")) //atualizar o credito
                             {
-                                System.out.print("digite quanto quer adicionar: ");
+                                System.out.print("Digite quanto quer adicionar: ");
                                 double credito = sc.nextDouble();
                                 controleCliente.atualizaCredito(ncliente, credito);
                             }
+
                             else if (Objects.equals(ac, "3"))
                             {
                                 break;
                             }
                             else
                             {
-                                System.out.println("opcao invalida");
+                                System.out.println("Opção inválida");
                             }
                         }
                         else
                         {
-                            System.out.println("Cadastro nao encontrado");
+                            System.out.println("Cadastro não encontrado");
                         }
                     }
                     else if (Objects.equals(m2, "2"))//compra sem cadastro
