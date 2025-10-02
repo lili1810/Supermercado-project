@@ -30,7 +30,8 @@ public class Supermercado
 
         System.out.println("------------------------Bem vindo ao Supermercado!-----------------------");
 
-        while(true) //f ou c
+        boolean rodando = true;
+        while(rodando) //f ou c
         {
             System.out.println("Selecione :\n" +
                 "1. Funcionário\n" +
@@ -38,31 +39,34 @@ public class Supermercado
                 "3. sair");
             String m1 = sc.nextLine();
 
+            // ================= CLIENTE =================
             if (Objects.equals(m1, "2"))
             {
-                while(true)
-                {
-                    System.out.print("Deseja fazer cadastro no supermercado?\n" +
-                        "1. sim\n" +
-                        "2. não\n" +
+                boolean clienteRodando = true;
+                System.out.print("Deseja fazer cadastro no supermercado?\n" +
+                        "1. Sim\n" +
+                        "2. Não\n" +
                         "3. já tenho cadastro\n");
-                    String m2 = sc.nextLine();
+                String m2 = sc.nextLine();
 
+                while(clienteRodando)
+                {
+                    // CADASTRAR NOVO CLIENTE
                     if (Objects.equals(m2, "1"))
                     {
-                        sc.nextLine();
-
                         System.out.print("Digite seu nome: ");
                         String nomecliente = sc.nextLine();
 
-                        System.out.print("Digite seu credito: ");
+                        System.out.print("Digite seu crédito: ");
                         double credito = sc.nextDouble();
+                        sc.nextLine();
 
                         controleCliente.cadastrarCliente(nomecliente, credito);
                         System.out.println();
 
                     }
-                    if (Objects.equals(m2, "1") || Objects.equals(m2, "3"))//tem cadastro
+                    //TEM CADASTRO
+                    if (Objects.equals(m2, "1") || Objects.equals(m2, "3"))
                     {
                         sc.nextLine();
                         System.out.print("Digite seu nome : ");
@@ -71,70 +75,69 @@ public class Supermercado
                         if (controleCliente.confereCadastro(ncliente)) {
                             System.out.println("cadastro encontrado!");
                             System.out.println();
-                            System.out.println("O que deseja fazer ?\n" +
-                                "1. Comprar um produto\n" +
-                                "2. atualizar o credito\n" +
-                                "3. Sair do supermercado");
-                            String ac = sc.nextLine();//acao cliente
 
-                            if (Objects.equals(ac, "1"))//comprar
-                            {
-                                System.out.println("Deseja comprar no credito?\n" +
-                                    "1. sim\n" +
-                                    "2. não");
-                                String c = sc.nextLine();
+                            boolean clienteMenu = true;
+                            while (clienteMenu) {
 
-                                System.out.println("Produots disponiveis: \n");
-                                controleProduto.listarProdutos();
-                                System.out.println();
+                                System.out.println("O que deseja fazer ?\n" +
+                                        "1. Comprar um produto\n" +
+                                        "2. atualizar o credito\n" +
+                                        "3. Sair do supermercado");
+                                String ac = sc.nextLine();//acao cliente
 
-                                sc.nextLine();
-                                System.out.print("Digite o nome do produto : ");
-                                nome = sc.nextLine();
-
-                                System.out.print("Digite a quantidade do produto: ");
-                                quantidade = sc.nextInt();
-
-                                if (Objects.equals(c, "1"))
+                                if (Objects.equals(ac, "1"))//comprar
                                 {
-                                    controleCliente.comprarnoCredito(ncliente);
-                                    controleProduto.efetuaVenda(nome, quantidade);
-                                }
-                                else if (Objects.equals(c, "2"))
-                                {
-                                    sc.nextLine();
-                                    System.out.println("Produots disponiveis: ");
+                                    System.out.println("Deseja comprar no credito?\n" +
+                                            "1. sim\n" +
+                                            "2. não");
+                                    String c = sc.nextLine();
+
+                                    System.out.println("Produtos disponíveis: \n");
                                     controleProduto.listarProdutos();
+                                    System.out.println();
 
-                                    System.out.println("O que deseja comprar?");
+                                    sc.nextLine();
+                                    System.out.print("Digite o nome do produto : ");
                                     nome = sc.nextLine();
 
                                     System.out.print("Digite a quantidade do produto: ");
-                                    sc.nextLine();
                                     quantidade = sc.nextInt();
+                                    sc.nextLine();
 
-                                    controleProduto.efetuaVenda(nome, quantidade);
-                                    System.out.println();
-                                }
-                                else
+                                    if (Objects.equals(c, "1")) {
+                                        controleCliente.comprarnoCredito(ncliente);
+                                        controleProduto.efetuaVenda(nome, quantidade);
+
+                                    }
+                                    else if (Objects.equals(c, "2"))
+                                    {
+                                        sc.nextLine();
+                                        System.out.println("Produtos disponíveis: ");
+                                        controleProduto.listarProdutos();
+
+                                        System.out.println("O que deseja comprar?");
+                                        nome = sc.nextLine();
+
+                                        System.out.print("Digite a quantidade do produto: ");
+                                        sc.nextLine();
+                                        quantidade = sc.nextInt();
+
+                                        controleProduto.efetuaVenda(nome, quantidade);
+                                        System.out.println();
+                                    } else {
+                                        System.out.println("Opção inválida");
+                                    }
+                                } else if (Objects.equals(ac, "2")) //atualizar o credito
                                 {
+                                    System.out.print("Digite quanto quer adicionar: ");
+                                    double credito = sc.nextDouble();
+                                    sc.nextLine();
+                                    controleCliente.atualizaCredito(ncliente, credito);
+                                } else if (Objects.equals(ac, "3")) {
+                                    break;
+                                } else {
                                     System.out.println("Opção inválida");
                                 }
-                            }
-                            else if (Objects.equals(ac, "2")) //atualizar o credito
-                            {
-                                System.out.print("Digite quanto quer adicionar: ");
-                                double credito = sc.nextDouble();
-                                controleCliente.atualizaCredito(ncliente, credito);
-                            }
-
-                            else if (Objects.equals(ac, "3"))
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                System.out.println("Opção inválida");
                             }
                         }
                         else
@@ -142,7 +145,8 @@ public class Supermercado
                             System.out.println("Cadastro não encontrado");
                         }
                     }
-                    else if (Objects.equals(m2, "2"))//compra sem cadastro
+                    //COMPRAS SEM CADASTRO
+                    else if (Objects.equals(m2, "2"))
                     {
                         System.out.println("O que deseja fazer :\n" +
                                 "1. Comprar um produto\n" +
@@ -151,7 +155,7 @@ public class Supermercado
                         if (Objects.equals(ac, "1"))
                         {
                             sc.nextLine();
-                            System.out.println("Produots disponiveis : ");
+                            System.out.println("Produtos disponiveis : ");
                             controleProduto.listarProdutos();
 
                             System.out.print("Digite o que deseja comprar : ");
@@ -159,31 +163,36 @@ public class Supermercado
 
                             System.out.print("Digite a quantidade do produto : ");
                             quantidade = sc.nextInt();
+                            sc.nextLine();
 
                             controleProduto.efetuaVenda(nome, quantidade);
                             System.out.println();
                         }
                         else if (Objects.equals(ac, "2"))
                         {
-                            break;
+                            clienteRodando = false;
                         }
                         else
                         {
-                            System.out.println("opcao invalida");
+                            System.out.println("opção inválida");
+                            clienteRodando = false;
                         }
                     }
                 }
             }
+            //================= FUNCIONÁRIO =================
             else if (Objects.equals(m1, "1"))
             {
-                while(true)
+                boolean funcionarioRodando = true;
+
+                while(funcionarioRodando)
                 {
                     System.out.println("O que deseja fazer?\n" +
                         "1. Cadastrar um produto\n" +
                         "2. Vender um produto\n" +
                         "3. Atualizar o estoque\n" +
                         "4. Ver produtos disponíveis\n" +
-                        "5. Ver historico de vendas\n" +
+                        "5. Ver histórico de vendas\n" +
                         "6. Ver cadastros\n" +//pessoas cadastradas
                         "7. Sair do supermercado");
                     String af = sc.nextLine();;//acao funcionario
@@ -199,6 +208,7 @@ public class Supermercado
 
                         System.out.print("Digite o preço do produto: ");
                         preco = sc.nextDouble();
+                        sc.nextLine();
 
                         controleProduto.cadastraProduto(nome, quantidade, preco);
                         System.out.println();
@@ -211,6 +221,7 @@ public class Supermercado
 
                         System.out.print("Digite a quantidade do produto: ");
                         quantidade = sc.nextInt();
+                        sc.nextLine();
 
                         controleProduto.efetuaVenda(nome, quantidade);
                         System.out.println();
@@ -223,6 +234,7 @@ public class Supermercado
 
                         System.out.print("Digite a quantidade do produto: ");
                         quantidade = sc.nextInt();
+                        sc.nextLine();
 
                         controleProduto.atualizaEstoque(nome, quantidade);
                         System.out.println();
@@ -244,22 +256,23 @@ public class Supermercado
                     }
                     else if (Objects.equals(af, "7"))
                     {
-                        break;
+                        funcionarioRodando = false;
                     }
                     else
                     {
-                        System.out.println("opcao invalida");
+                        System.out.println("opção inválida");
                         System.out.println();
                     }
                 }
             }
+            // ================= SAIR =================
             else if(Objects.equals(m1, "3"))
             {
-                break;
+                rodando = false;
             }
             else
             {
-                System.out.println("opcao invalida");
+                System.out.println("opção inválida");
                 System.out.println();
             }
         }
