@@ -63,12 +63,11 @@ public class Supermercado
 
                         controleCliente.cadastrarCliente(nomecliente, credito);
                         System.out.println();
-
+                        m2 = "3";
                     }
                     //TEM CADASTRO
-                    if (Objects.equals(m2, "1") || Objects.equals(m2, "3"))
+                    if (Objects.equals(m2, "3"))
                     {
-                        sc.nextLine();
                         System.out.print("Digite seu nome : ");
                         String ncliente = sc.nextLine();
 
@@ -77,8 +76,9 @@ public class Supermercado
                             System.out.println();
 
                             boolean clienteMenu = true;
-                            while (clienteMenu) {
 
+                            while (clienteMenu)
+                            {
                                 System.out.println("O que deseja fazer ?\n" +
                                         "1. Comprar um produto\n" +
                                         "2. atualizar o credito\n" +
@@ -96,7 +96,6 @@ public class Supermercado
                                     controleProduto.listarProdutos();
                                     System.out.println();
 
-                                    sc.nextLine();
                                     System.out.print("Digite o nome do produto : ");
                                     nome = sc.nextLine();
 
@@ -104,38 +103,44 @@ public class Supermercado
                                     quantidade = sc.nextInt();
                                     sc.nextLine();
 
-                                    if (Objects.equals(c, "1")) {
-                                        controleCliente.comprarnoCredito(ncliente);
+                                    // Calcular preço total
+                                    double precoTotal = 0;
+                                    for (Produto p : controleProduto.getProdutos()) {
+                                        if (Objects.equals(p.GetNome(), nome)) {
+                                            precoTotal = p.getPreco() * quantidade;
+                                            break;
+                                        }
+                                    }
+                                    if (Objects.equals(c, "1"))
+                                    {
+                                        controleCliente.comprarnoCredito(ncliente, precoTotal);
                                         controleProduto.efetuaVenda(nome, quantidade);
-
                                     }
                                     else if (Objects.equals(c, "2"))
                                     {
-                                        sc.nextLine();
-                                        System.out.println("Produtos disponíveis: ");
-                                        controleProduto.listarProdutos();
-
-                                        System.out.println("O que deseja comprar?");
-                                        nome = sc.nextLine();
-
-                                        System.out.print("Digite a quantidade do produto: ");
-                                        sc.nextLine();
-                                        quantidade = sc.nextInt();
-
                                         controleProduto.efetuaVenda(nome, quantidade);
                                         System.out.println();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         System.out.println("Opção inválida");
                                     }
-                                } else if (Objects.equals(ac, "2")) //atualizar o credito
+                                }
+                                else if (Objects.equals(ac, "2")) //atualizar o credito
                                 {
                                     System.out.print("Digite quanto quer adicionar: ");
                                     double credito = sc.nextDouble();
                                     sc.nextLine();
+
                                     controleCliente.atualizaCredito(ncliente, credito);
-                                } else if (Objects.equals(ac, "3")) {
-                                    break;
-                                } else {
+                                }
+                                else if (Objects.equals(ac, "3"))
+                                {
+                                   clienteMenu = false;
+                                   clienteRodando = false;
+                                }
+                                else
+                                {
                                     System.out.println("Opção inválida");
                                 }
                             }
@@ -152,10 +157,10 @@ public class Supermercado
                                 "1. Comprar um produto\n" +
                                 "2. Sair do supermercado");
                         String ac = sc.nextLine();
+
                         if (Objects.equals(ac, "1"))
                         {
-                            sc.nextLine();
-                            System.out.println("Produtos disponiveis : ");
+                            System.out.println("Produtos disponíveis : ");
                             controleProduto.listarProdutos();
 
                             System.out.print("Digite o que deseja comprar : ");
@@ -175,7 +180,6 @@ public class Supermercado
                         else
                         {
                             System.out.println("opção inválida");
-                            clienteRodando = false;
                         }
                     }
                 }
@@ -199,12 +203,12 @@ public class Supermercado
 
                     if (Objects.equals(af, "1"))
                     {
-                        sc.nextLine();
                         System.out.print("Digite o nome do produto: ");
                         nome = sc.nextLine();
 
                         System.out.print("Digite a quantidade do produto: ");
                         quantidade = sc.nextInt();
+                        sc.nextLine();
 
                         System.out.print("Digite o preço do produto: ");
                         preco = sc.nextDouble();
@@ -215,7 +219,6 @@ public class Supermercado
                     }
                     else if (Objects.equals(af, "2"))
                     {
-                        sc.nextLine();
                         System.out.print("Digite o nome do produto: ");
                         nome = sc.nextLine();
 
@@ -228,7 +231,6 @@ public class Supermercado
                     }
                     else if (Objects.equals(af, "3"))
                     {
-                        sc.nextLine();
                         System.out.print("Digite o nome do produto: ");
                         nome = sc.nextLine();
 
@@ -276,5 +278,6 @@ public class Supermercado
                 System.out.println();
             }
         }
+        sc.close();
     }
 }

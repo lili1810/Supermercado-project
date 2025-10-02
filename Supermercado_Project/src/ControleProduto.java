@@ -89,4 +89,7 @@ public class ControleProduto
             produto.exibirInfo();
         }
     }
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
 }

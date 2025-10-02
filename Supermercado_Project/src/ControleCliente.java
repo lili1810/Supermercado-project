@@ -32,17 +32,22 @@ public class ControleCliente
         return false;
     }
 
-    public void comprarnoCredito(String nome)
+    public void comprarnoCredito(String nome, double valor)
     {
-        for(Cliente cliente : clientecadastrado)
-        {
-            if (Objects.equals(cliente.getNome(), nome))
-            {
-                if (cliente.getCredito() >= produto.getPreco()) {
-                    cliente.reduzCredito(produto.getPreco());
+        for (Cliente cliente : clientecadastrado) {
+            if (Objects.equals(cliente.getNome(), nome)) {
+                if (cliente.getCredito() >= valor) {
+                    cliente.reduzCredito(valor);
+                    System.out.println("Compra no crédito realizada!");
                     return;
                 }
+                else
+                {
+                    System.out.println("Crédito insuficiente");
+                    return ; // crédito insuficiente
+                }
             }
+        return;
         }
     }
     public void atualizaCredito(String nome,double credito)
@@ -58,3 +63,8 @@ public class ControleCliente
         }
     }
 }
+
+
+
+
+
